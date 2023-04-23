@@ -44,11 +44,20 @@ span.rbc-toolbar-label {
   padding: 10px;
 }
 
-.fab {
+.fab{
   border-radius: 100%;
   bottom: 25px;
   font-size: 30px;
   padding: 15px;
   position: fixed;
   right: 25px;
+}
+.fab-danger {
+  border-radius: 100%;
+  bottom: 25px;
+  font-size: 20px;
+  position: fixed;
+  left: 25px;
+  width: 65px;
+  height: 65px;
 }
