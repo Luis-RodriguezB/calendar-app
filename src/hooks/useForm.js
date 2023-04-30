@@ -22,9 +22,16 @@ export const useForm = (initialForm = {}) => {
     });
   };
 
-  const onResetForm = (formValues) => {
+  const onSetForm = (formValues) => {
     dispatch({
       type: formTypes.SET_FORM,
+      payload: formValues,
+    });
+  };
+
+  const onResetForm = (formValues) => {
+    dispatch({
+      type: formTypes.RESET_FORM,
       payload: formValues,
     });
   };
@@ -35,6 +42,7 @@ export const useForm = (initialForm = {}) => {
 
     handleChange,
     onDateChanged,
-    onResetForm
+    onSetForm,
+    onResetForm,
   };
 };

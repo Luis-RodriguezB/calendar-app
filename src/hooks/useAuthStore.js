@@ -1,6 +1,12 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { calendarApi } from '../api';
-import { clearErrorMessage, onChecking, onLogin, onLogout } from '../store';
+import {
+  clearErrorMessage,
+  onChecking,
+  onLogin,
+  onLogout,
+  onLogoutCalendar,
+} from '../store';
 
 export const useAuthStore = () => {
   const { status, user, errorMessage } = useSelector((state) => state.auth);
@@ -17,7 +23,6 @@ export const useAuthStore = () => {
     try {
       const { data } = await calendarApi.post('/auth', { email, password });
       isLogin(data.name, data.id, data.token);
-
     } catch (error) {
       dispatch(onLogout('Credenciales incorrectas'));
       setTimeout(() => {
@@ -29,9 +34,12 @@ export const useAuthStore = () => {
   const startRegister = async ({ name, email, password }) => {
     dispatch(onChecking());
     try {
-      const { data } = await calendarApi.post('/auth/new', {name, email, password,});
+      const { data } = await calendarApi.post('/auth/new', {
+        name,
+        email,
+        password,
+      });
       isLogin(data.name, data.id, data.token);
-
     } catch (error) {
       console.log(error);
       dispatch(onLogout(error.response.data?.msg || '--'));
@@ -49,7 +57,6 @@ export const useAuthStore = () => {
     try {
       const { data } = await calendarApi.get('auth/renew');
       isLogin(data.name, data.id, data.token);
-
     } catch (error) {
       localStorage.removeItem('token');
       localStorage.removeItem('token-init-date');
@@ -61,8 +68,9 @@ export const useAuthStore = () => {
     localStorage.removeItem('token');
     localStorage.removeItem('token-init-date');
 
+    dispatch(onLogoutCalendar());
     dispatch(onLogout());
-  }
+  };
 
   return {
     status,
@@ -72,6 +80,6 @@ export const useAuthStore = () => {
     checkAuthToken,
     startLogin,
     startRegister,
-    startLogout
+    startLogout,
   };
 };

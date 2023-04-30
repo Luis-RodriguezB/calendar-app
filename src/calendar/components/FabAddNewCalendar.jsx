@@ -7,14 +7,10 @@ export const FabAddNewCalendar = () => {
 
   const handleClickNew = () => {
     setActiveEvent({
-      title: 'Fiesta',
-      notes: 'Comprar pastel',
+      title: '',
+      notes: '',
       start: new Date(),
       end: addHours(new Date(), 1),
-      user: {
-        _id: '123',
-        name: 'Luis Rodriguez',
-      },
     });
     openDateModal();
   };
