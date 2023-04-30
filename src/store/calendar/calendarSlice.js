@@ -13,7 +13,7 @@ const tempEvent = {
   },
 };
 
-export const calendatrSlice = createSlice({
+export const calendarSlice = createSlice({
   name: 'calendar',
   initialState: {
     events: [tempEvent],
@@ -48,4 +48,4 @@ export const calendatrSlice = createSlice({
 });
 
 export const { onSetActiveEvent, onAddNewEvent, onUpdateEvent, onDeleteEvent } =
-  calendatrSlice.actions;
+  calendarSlice.actions;
